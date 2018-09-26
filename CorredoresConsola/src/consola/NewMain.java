@@ -59,6 +59,16 @@ public class NewMain {
                     String dni = teclado.nextLine();
                     la.darBajaCorredor(dni);
                     break;
+                case 4:
+                    System.out.println("Introduce el nombre del corredor que quieres modificar");
+                    teclado.nextLine();
+                    String nombre = teclado.nextLine();
+                    System.out.println("vamos a modificarlo automáticamente que me da la chapa hacer todas las preguntas");
+                    System.out.println("Por si acaso lo que haria seria crear un corredor y pasarselo a la logica donde hago la modificacion");
+                    corredor = new Corredor("Lucas","42342424323424x","Sotrondio","323545767",FechaUtils.pasarStringADate("15/08/1998"));
+                    la.modificarCorredor(nombre, corredor);
+                    break;
+
             }
 
         } while (respuesta != 5);
