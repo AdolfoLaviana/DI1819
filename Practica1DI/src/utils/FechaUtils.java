@@ -17,7 +17,7 @@ import java.util.Date;
 public class FechaUtils {
 
     public static SimpleDateFormat sdfFecha = new SimpleDateFormat("dd/MM/yyyy");
-    public static SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm");
+    //public static SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm");
 
     public static Date pasarStringADate(String fecha) {
 

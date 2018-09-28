@@ -13,23 +13,23 @@ import logic.LogicaAplicacion;
  *
  * @author dstarsln
  */
-public class DialogoAlta extends javax.swing.JDialog {
+public class DialogoAltaCorredor extends javax.swing.JDialog {
 
     /**
-     * Creates new form DialogoAlta
+     * Creates new form DialogoAltaCorredor
      */
     LogicaAplicacion la;
     Corredor corredor;
     String nombre;
 
-    public DialogoAlta(java.awt.Dialog parent, boolean modal, LogicaAplicacion la) {
+    public DialogoAltaCorredor(java.awt.Dialog parent, boolean modal, LogicaAplicacion la) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         this.la = la;
     }
 
-    public DialogoAlta(java.awt.Dialog parent, boolean modal, LogicaAplicacion la, Corredor corredor) {
+    public DialogoAltaCorredor(java.awt.Dialog parent, boolean modal, LogicaAplicacion la, Corredor corredor) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);

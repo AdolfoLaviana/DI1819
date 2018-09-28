@@ -134,7 +134,7 @@ public class DialogoCorredores extends javax.swing.JDialog {
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
         // TODO add your handling code here:
-        DialogoAlta jDialogAlta = new DialogoAlta(this, true, la);
+        DialogoAltaCorredor jDialogAlta = new DialogoAltaCorredor(this, true, la);
         jDialogAlta.setVisible(true);
         jTableCorredores.setModel(new CorredoresTableModel(la.getListaDeCorredores()));
     }//GEN-LAST:event_jButtonAltaActionPerformed
@@ -161,7 +161,7 @@ public class DialogoCorredores extends javax.swing.JDialog {
         // TODO add your handling code here:
         int index = jTableCorredores.getSelectedRow();
         c = la.getListaDeCorredores().get(index);
-        DialogoAlta jDialogAlta = new DialogoAlta(this, true, la,c);
+        DialogoAltaCorredor jDialogAlta = new DialogoAltaCorredor(this, true, la,c);
         jDialogAlta.setVisible(true);
         jTableCorredores.setModel(new CorredoresTableModel(la.getListaDeCorredores()));
         
