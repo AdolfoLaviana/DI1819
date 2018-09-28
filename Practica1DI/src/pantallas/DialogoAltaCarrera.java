@@ -35,6 +35,15 @@ public class DialogoAltaCarrera extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         this.la = la;
         this.carrera = carrera;
+        this.nombre = carrera.getNombreCarrera();
+        jTextFieldNombreCarrera.setText(carrera.getNombreCarrera());
+        jTextFieldLugarCarrera.setText(carrera.getLugarCarrera());
+        jSpinnerMaximoCorredores.setValue(carrera.getNumMaxCorredores());
+        String fechaString = utils.FechaUtils.pasarDateAString(carrera.getFechaCarrera());
+        String[] trozos = fechaString.split("/");
+        jSpinnerDay.setValue(Integer.parseInt(trozos[0]));
+        jSpinnerMonth.setValue(Integer.parseInt(trozos[1]));
+        jSpinnerYear.setValue(Integer.parseInt(trozos[2]));
     }
 
     /**
@@ -158,11 +167,18 @@ public class DialogoAltaCarrera extends javax.swing.JDialog {
             carrera = new Carrera(nombreCarrera, lugarCarrera, fechaCarrera, numeroMaximoCorredores);
             la.darAltaCarrera(carrera);
 
-            this.setVisible(false);
+            
 
         } else {
-
+            String nombreCarrera = jTextFieldNombreCarrera.getText();
+            String lugarCarrera = jTextFieldLugarCarrera.getText();
+            int numeroMaximoCorredores = (int) jSpinnerMaximoCorredores.getValue();
+            String fechaString = jSpinnerDay.getValue() + "/" + jSpinnerMonth.getValue() + "/" + jSpinnerYear.getValue();
+            Date fechaCarrera = utils.FechaUtils.pasarStringADate(fechaString);
+            carrera = new Carrera(nombreCarrera, lugarCarrera, fechaCarrera, numeroMaximoCorredores);
+            la.modificarCarrera(nombre, carrera);
         }
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonAltaActionPerformed
 
     /**

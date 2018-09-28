@@ -11,11 +11,13 @@ public class LogicaAplicacion {
 
     private List<Corredor> listaDeCorredores;
     private List<Carrera> listaDeCarreras;
+    private List<Carrera> listaCarrerasFinalizadas;
 
     public LogicaAplicacion() {
         listaDeCorredores = new ArrayList<>();
         listaDeCarreras = new ArrayList<>();
-        
+        listaCarrerasFinalizadas = new ArrayList<>();
+
     }
 
     public List<Corredor> getListaDeCorredores() {
@@ -33,16 +35,25 @@ public class LogicaAplicacion {
     public void setListaDeCarreras(List<Carrera> listaDeCarreras) {
         this.listaDeCarreras = listaDeCarreras;
     }
-    
 
     public void darAltaCorredor(Corredor corredor) {
         listaDeCorredores.add(corredor);
     }
 
+    public List<Carrera> getListaCarrerasFinalizadas() {
+        return listaCarrerasFinalizadas;
+    }
+
+    public void setListaCarrerasFinalizadas(List<Carrera> listaCarrerasFinalizadas) {
+        this.listaCarrerasFinalizadas = listaCarrerasFinalizadas;
+    }
+    
+    
+
     public void darBajaCorredor(String dni) {
         //Iterator iterator = listaDeCorredores.iterator();
 
-       for (Iterator<Corredor> iterator = listaDeCorredores.iterator(); iterator.hasNext();) {
+        for (Iterator<Corredor> iterator = listaDeCorredores.iterator(); iterator.hasNext();) {
             Corredor next = iterator.next();
             if (next.getDni().equals(dni)) {
                 iterator.remove();
@@ -61,7 +72,6 @@ public class LogicaAplicacion {
                 listaDeCorredores.get(i).setTlfn(corredor.getTlfn());
             }
         }
-
     }
 
     public void darAltaCarrera(Carrera carrera) {
@@ -81,8 +91,8 @@ public class LogicaAplicacion {
         }
 
     }
-    
-    public void modificarCarrera(String nombre,Carrera carrera){
+
+    public void modificarCarrera(String nombre, Carrera carrera) {
         for (int i = 0; i < listaDeCarreras.size(); i++) {
             if (listaDeCarreras.get(i).getNombreCarrera().equals(nombre)) {
                 listaDeCarreras.get(i).setNombreCarrera(carrera.getNombreCarrera());
@@ -92,6 +102,10 @@ public class LogicaAplicacion {
 
             }
         }
+    }
+    
+    public void finalizarCarrera(Carrera carrera){
+        listaCarrerasFinalizadas.add(carrera);
     }
 
 }

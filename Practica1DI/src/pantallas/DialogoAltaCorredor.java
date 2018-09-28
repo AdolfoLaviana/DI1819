@@ -41,7 +41,7 @@ public class DialogoAltaCorredor extends javax.swing.JDialog {
         jTextFieldDni.setText(corredor.getDni());
         jTextFieldTelefono.setText(corredor.getTlfn());
         String fechaString = utils.FechaUtils.pasarDateAString(corredor.getFechaNac());
-        String trozos[] = fechaString.split("/");
+        String[] trozos = fechaString.split("/");
         jSpinnerFechDay.setValue(Integer.parseInt(trozos[0]));
         jSpinnerMonth.setValue(Integer.parseInt(trozos[1]));
         jSpinnerYear.setValue(Integer.parseInt(trozos[2]));
