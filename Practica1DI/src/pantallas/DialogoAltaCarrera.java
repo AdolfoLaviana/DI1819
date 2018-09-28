@@ -155,17 +155,10 @@ public class DialogoAltaCarrera extends javax.swing.JDialog {
             int numeroMaximoCorredores = (int) jSpinnerMaximoCorredores.getValue();
             String fechaString = jSpinnerDay.getValue() + "/" + jSpinnerMonth.getValue() + "/" + jSpinnerYear.getValue();
             Date fechaCarrera = utils.FechaUtils.pasarStringADate(fechaString);
-            carrera = new Carrera(nombreCarrera,lugarCarrera,fechaCarrera,numeroMaximoCorredores);
+            carrera = new Carrera(nombreCarrera, lugarCarrera, fechaCarrera, numeroMaximoCorredores);
             la.darAltaCarrera(carrera);
-            
-            //Limpiar campos
-            jTextFieldNombreCarrera.setText("");
-            jTextFieldLugarCarrera.setText("");
-            jSpinnerMaximoCorredores.setValue(1);
-            
-            for (Carrera listaDeCarrera : la.getListaDeCarreras()) {
-                System.out.println(listaDeCarrera);
-            }
+
+            this.setVisible(false);
 
         } else {
 

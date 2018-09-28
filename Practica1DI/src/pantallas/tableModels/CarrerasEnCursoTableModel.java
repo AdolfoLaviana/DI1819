@@ -14,9 +14,10 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author dstarsln
  */
-public class CarrerasEnCursoTableModel extends AbstractTableModel{
-     private List<Carrera> listaCarreras = new ArrayList<>();
-    private String[] columnas = {"Nombre","Lugar","Maximo corredores"};
+public class CarrerasEnCursoTableModel extends AbstractTableModel {
+
+    private List<Carrera> listaCarreras = new ArrayList<>();
+    private String[] columnas = {"Nombre", "Lugar", "Fecha Inicio", "Maximo corredores"};
 
     public CarrerasEnCursoTableModel(List<Carrera> listaCarreras) {
         this.listaCarreras = listaCarreras;
@@ -27,9 +28,6 @@ public class CarrerasEnCursoTableModel extends AbstractTableModel{
         return columnas[i];
     }
 
-    
-    
-    
     @Override
     public int getRowCount() {
         return listaCarreras.size();
@@ -42,17 +40,17 @@ public class CarrerasEnCursoTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch(columnIndex){
+        switch (columnIndex) {
             case 0:
                 return listaCarreras.get(rowIndex).getNombreCarrera();
             case 1:
                 return listaCarreras.get(rowIndex).getLugarCarrera();
             case 2:
-                return listaCarreras.get(rowIndex).getNumMaxCorredores();
-            case 3:
                 return utils.FechaUtils.pasarDateAString(listaCarreras.get(rowIndex).getFechaCarrera());
+            case 3:
+                return listaCarreras.get(rowIndex).getNumMaxCorredores();
         }
         return null;
     }
-    
+
 }

@@ -14,6 +14,7 @@ public class LogicaAplicacion {
 
     public LogicaAplicacion() {
         listaDeCorredores = new ArrayList<>();
+        listaDeCarreras = new ArrayList<>();
         
     }
 

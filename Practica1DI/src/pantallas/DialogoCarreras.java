@@ -6,6 +6,7 @@
 package pantallas;
 
 import logic.LogicaAplicacion;
+import pantallas.tableModels.CarrerasEnCursoTableModel;
 
 /**
  *
@@ -20,6 +21,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.la = la;
+        jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
     }
 
     /**
@@ -32,14 +34,14 @@ public class DialogoCarreras extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCarrerasNuevas = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCarrerasNuevas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -50,7 +52,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableCarrerasNuevas);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,6 +108,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
         // TODO add your handling code here:
         DialogoAltaCarrera jDialogAlta = new DialogoAltaCarrera(this, true, la);
         jDialogAlta.setVisible(true);
+        jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -117,7 +120,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableCarrerasNuevas;
     // End of variables declaration//GEN-END:variables
 }
