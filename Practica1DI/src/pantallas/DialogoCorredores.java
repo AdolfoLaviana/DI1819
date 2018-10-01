@@ -21,13 +21,17 @@ public class DialogoCorredores extends javax.swing.JDialog {
      */
     LogicaAplicacion la;
     Corredor c;
-
+    
     public DialogoCorredores(java.awt.Frame parent, boolean modal, LogicaAplicacion la) {
         super(parent, modal);
         initComponents();
         this.la = la;
         setLocationRelativeTo(null);
         jTableCorredores.setModel(new CorredoresTableModel(la.getListaDeCorredores()));
+        if (jTableCorredores.getSelectedRow() == -1) {
+            jButtonModificar.setVisible(false);
+            jButtonBorrar.setVisible(false);
+        }
     }
 
     /**
@@ -154,14 +158,17 @@ public class DialogoCorredores extends javax.swing.JDialog {
     private void jTableCorredoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCorredoresMouseClicked
         // TODO add your handling code here:
         int index = jTableCorredores.getSelectedRow();
+        jButtonModificar.setVisible(true);
+        jButtonBorrar.setVisible(true);
         c = la.getListaDeCorredores().get(index);
+        
     }//GEN-LAST:event_jTableCorredoresMouseClicked
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
         int index = jTableCorredores.getSelectedRow();
         c = la.getListaDeCorredores().get(index);
-        DialogoAltaCorredor jDialogAlta = new DialogoAltaCorredor(this, true, la,c);
+        DialogoAltaCorredor jDialogAlta = new DialogoAltaCorredor(this, true, la, c);
         jDialogAlta.setVisible(true);
         jTableCorredores.setModel(new CorredoresTableModel(la.getListaDeCorredores()));
         
