@@ -26,6 +26,7 @@ public class DialogoAltaCorredor extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
         this.la = la;
     }
 

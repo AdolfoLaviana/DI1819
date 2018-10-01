@@ -47,8 +47,6 @@ public class LogicaAplicacion {
     public void setListaCarrerasFinalizadas(List<Carrera> listaCarrerasFinalizadas) {
         this.listaCarrerasFinalizadas = listaCarrerasFinalizadas;
     }
-    
-    
 
     public void darBajaCorredor(String dni) {
         //Iterator iterator = listaDeCorredores.iterator();
@@ -103,9 +101,14 @@ public class LogicaAplicacion {
             }
         }
     }
-    
-    public void finalizarCarrera(Carrera carrera){
+
+    public void finalizarCarrera(Carrera carrera) {
         listaCarrerasFinalizadas.add(carrera);
     }
 
+
+    public void altaCorredorDorsal(Carrera c, Corredor corredor, int dorsal){
+        
+        c.getListaCorredoresYDorsal().put(corredor, dorsal);
+    }
 }

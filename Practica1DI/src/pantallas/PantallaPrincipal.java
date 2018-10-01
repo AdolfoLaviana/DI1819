@@ -28,6 +28,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         csv = new TokenizarUtils(la);
         csv.leerCSVcorredor();
         setLocationRelativeTo(null);
+        setResizable(false);
         
     }
 

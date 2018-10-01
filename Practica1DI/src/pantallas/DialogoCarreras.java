@@ -15,14 +15,15 @@ import pantallas.tableModels.CarrerasFinalizadasTableModel;
  * @author dstarsln
  */
 public class DialogoCarreras extends javax.swing.JDialog {
-
+    
     LogicaAplicacion la;
     Carrera carrera;
-
+    
     public DialogoCarreras(java.awt.Frame parent, boolean modal, LogicaAplicacion la) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
         this.la = la;
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
         jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
@@ -147,6 +148,10 @@ public class DialogoCarreras extends javax.swing.JDialog {
     private void jTableCarrerasNuevasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarrerasNuevasMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
+            int index = jTableCarrerasNuevas.getSelectedRow();
+            
+            DialogoCarreraEnCurso jDialogCarreraCurso = new DialogoCarreraEnCurso(this, true, la, la.getListaDeCarreras().get(index));
+            jDialogCarreraCurso.setVisible(true);
 
             //Una vez que acabe
             jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
