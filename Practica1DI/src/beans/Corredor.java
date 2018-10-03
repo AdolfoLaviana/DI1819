@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author dstarsln
  */
-public class Corredor {
+public class Corredor implements Comparable<Corredor>{
     
     private String nombre,dni,direccion,tlfn;
     private Date fechaNac;
@@ -72,8 +72,18 @@ public class Corredor {
     public String toString() {
         return "Corredor{" + "nombre=" + nombre + ", dni=" + dni + ", direccion=" + direccion + ", tlfn=" + tlfn + ", fechaNac=" + fechaNac + '}';
     }
-    
-    
+
+    @Override
+    public int compareTo(Corredor t) {
+        if(this.dni.equals(t.getDni())){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+        
+    }
+   
 
     
 }

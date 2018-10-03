@@ -7,9 +7,12 @@ package pantallas;
 
 import beans.Carrera;
 import beans.Corredor;
+import java.util.HashMap;
+import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import logic.LogicaAplicacion;
 import pantallas.tableModels.CorredoresCarrerasTableModel;
+
 /**
  *
  * @author dstarsln
@@ -39,7 +42,7 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
         }
 
         jComboBoxlListaCorredores.setModel(dcm);
-        jTable1.setModel(new CorredoresCarrerasTableModel(la.getCorredoresDorsal()));
+        jTable1.setModel(new CorredoresCarrerasTableModel((HashMap<Corredor, Integer>) carrera.getListaCorredoresYDorsal()));
     }
 
     /**
@@ -75,6 +78,11 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
         jComboBoxlListaCorredores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Alta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Nuevo Corredor");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -127,10 +135,43 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
         }
 
         jComboBoxlListaCorredores.setModel(dcm);
-        
-        
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int contador;
+        Corredor corredor;
+        int index = jComboBoxlListaCorredores.getSelectedIndex();
+        corredor = la.getListaDeCorredores().get(index);
+        Corredor[] listaCorredoresEnCarrera = new Corredor[carrera.getListaCorredoresYDorsal().keySet().size()];
+        carrera.getListaCorredoresYDorsal().keySet().toArray(listaCorredoresEnCarrera);
+
+        
+        
+        if (carrera.getListaCorredoresYDorsal().keySet().contains(corredor)) {
+            System.err.println("Hola a todos");
+        } else {
+            contador = carrera.getListaCorredoresYDorsal().values().size() + 1;
+            la.altaCorredorDorsal(carrera, corredor, contador);
+        }
+        /*
+        for (Iterator iterator = carrera.getListaCorredoresYDorsal().keySet().iterator(); iterator.hasNext();) {
+            Corredor next = (Corredor) iterator.next();
+            
+            if (corredor.getDni().equals(next.getDni())) {
+                System.out.println("ta repe");
+            } else {
+                contador = carrera.getListaCorredoresYDorsal().values().size() + 1;
+                la.altaCorredorDorsal(carrera, corredor, contador);
+            }
+            
+        }*/
+
+        jTable1.setModel(new CorredoresCarrerasTableModel((HashMap<Corredor, Integer>) carrera.getListaCorredoresYDorsal()));
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

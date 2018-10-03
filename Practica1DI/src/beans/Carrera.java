@@ -16,7 +16,7 @@ public class Carrera {
     private String nombreCarrera,lugarCarrera;
     private Date fechaCarrera;
     private int numMaxCorredores;
-    private Map<Corredor,Integer> listaCorredoresYDorsal;
+    private HashMap<Corredor,Integer> listaCorredoresYDorsal;
     private List<String> listaCorredoresSegunLlegada;
 
     public Carrera(String nombreCarrera, String lugarCarrera, Date fechaCarrera, int numMaxCorredores) {
@@ -62,11 +62,11 @@ public class Carrera {
         this.numMaxCorredores = numMaxCorredores;
     }
 
-    public Map<Corredor, Integer> getListaCorredoresYDorsal() {
+    public HashMap<Corredor, Integer> getListaCorredoresYDorsal() {
         return listaCorredoresYDorsal;
     }
 
-    public void setListaCorredoresYDorsal(Map<Corredor, Integer> listaCorredoresYDorsal) {
+    public void setListaCorredoresYDorsal(HashMap<Corredor, Integer> listaCorredoresYDorsal) {
         this.listaCorredoresYDorsal = listaCorredoresYDorsal;
     }
 
