@@ -139,11 +139,7 @@ public class LogicaAplicacion {
         int contador;
         Corredor c = this.getListaDeCorredores().get(index);
 
-        if (listaCorredoresDorsal.contains(c)) {
-            System.err.println("Hola a todos");
-        } else {
-            contador = carrera.getListaCorredoresYDorsal().size() + 1;
-            this.altaCorredorDorsal(carrera, this.listaDeCorredores.get(index), contador);
-        }
+        contador = carrera.getListaCorredoresYDorsal().size() + 1;
+        this.altaCorredorDorsal(carrera, c, contador);
     }
 }
