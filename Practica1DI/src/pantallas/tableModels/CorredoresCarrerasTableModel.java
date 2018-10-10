@@ -6,6 +6,8 @@
 package pantallas.tableModels;
 
 import beans.Corredor;
+import beans.CorredoresYDorsal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.table.AbstractTableModel;
 
@@ -15,23 +17,21 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CorredoresCarrerasTableModel extends AbstractTableModel {
 
-    private HashMap<Corredor, Integer> corredoresDorsal = new HashMap<>();
+    private ArrayList<CorredoresYDorsal> listaCorredoresDorsal;
     private String[] columnas = {"Dni", "Dorsal"};
 
     @Override
     public String getColumnName(int i) {
         return columnas[i];
     }
-    
-    
 
-    public CorredoresCarrerasTableModel(HashMap<Corredor, Integer> corredoresDorsal) {
-        this.corredoresDorsal = corredoresDorsal;
+    public CorredoresCarrerasTableModel(ArrayList<CorredoresYDorsal> listaCorredoresDorsal) {
+        this.listaCorredoresDorsal = listaCorredoresDorsal;
     }
 
     @Override
     public int getRowCount() {
-        return corredoresDorsal.size();
+        return listaCorredoresDorsal.size();
     }
 
     @Override
@@ -43,13 +43,10 @@ public class CorredoresCarrerasTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                Corredor corredor = (Corredor) corredoresDorsal.keySet().toArray()[rowIndex];
-                
-                return corredor.getDni();
+                return listaCorredoresDorsal.get(rowIndex).getCorredor().getDni();
+
             case 1:
-                int dorsal;
-                dorsal = (int) corredoresDorsal.values().toArray()[rowIndex];
-                return String.valueOf(dorsal);
+                return String.valueOf(listaCorredoresDorsal.get(rowIndex).getDorsal());
         }
         return null;
     }

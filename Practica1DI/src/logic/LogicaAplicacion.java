@@ -2,24 +2,24 @@ package logic;
 
 import beans.Carrera;
 import beans.Corredor;
+import beans.CorredoresYDorsal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import utils.TokenizarUtils;
 
 public class LogicaAplicacion {
 
     private List<Corredor> listaDeCorredores;
     private List<Carrera> listaDeCarreras;
     private List<Carrera> listaCarrerasFinalizadas;
-    private HashMap<Corredor, Integer> corredoresDorsal;
+    private List<CorredoresYDorsal> listaCorredoresDorsal;
+    private CorredoresYDorsal corredorYdorsal;
 
     public LogicaAplicacion() {
         listaDeCorredores = new ArrayList<>();
         listaDeCarreras = new ArrayList<>();
         listaCarrerasFinalizadas = new ArrayList<>();
-        corredoresDorsal = new HashMap<>();
+        listaCorredoresDorsal = new ArrayList<>();
     }
 
     public List<Corredor> getListaDeCorredores() {
@@ -50,15 +50,13 @@ public class LogicaAplicacion {
         this.listaCarrerasFinalizadas = listaCarrerasFinalizadas;
     }
 
-    public HashMap<Corredor, Integer> getCorredoresDorsal() {
-        return corredoresDorsal;
+    public List<CorredoresYDorsal> getListaCorredoresDorsal() {
+        return listaCorredoresDorsal;
     }
 
-    public void setCorredoresDorsal(HashMap<Corredor, Integer> corredoresDorsal) {
-        this.corredoresDorsal = corredoresDorsal;
+    public void setListaCorredoresDorsal(List<CorredoresYDorsal> listaCorredoresDorsal) {
+        this.listaCorredoresDorsal = listaCorredoresDorsal;
     }
-    
-    
 
     public void darBajaCorredor(String dni) {
         //Iterator iterator = listaDeCorredores.iterator();
@@ -118,9 +116,34 @@ public class LogicaAplicacion {
         listaCarrerasFinalizadas.add(carrera);
     }
 
-    public void altaCorredorDorsal(Carrera c, Corredor corredor, int dorsal) {
+    /**
+     * alta Corredor y Dorsal
+     *
+     * @param carrera
+     * @param corredor
+     * @param dorsal
+     */
+    public void altaCorredorDorsal(Carrera carrera, Corredor corredor, int dorsal) {
 
-        c.getListaCorredoresYDorsal().put(corredor, dorsal);
+        corredorYdorsal = new CorredoresYDorsal(corredor, dorsal);
+        carrera.getListaCorredoresYDorsal().add(corredorYdorsal);
     }
 
+    /**
+     * recoger Datos Dar Alta Corredor Dorsal
+     *
+     * @param index
+     * @param carrera
+     */
+    public void recogerDatosDarAltaCorredorDorsal(int index, Carrera carrera) {
+        int contador;
+        Corredor c = this.getListaDeCorredores().get(index);
+
+        if (listaCorredoresDorsal.contains(c)) {
+            System.err.println("Hola a todos");
+        } else {
+            contador = carrera.getListaCorredoresYDorsal().size() + 1;
+            this.altaCorredorDorsal(carrera, this.listaDeCorredores.get(index), contador);
+        }
+    }
 }

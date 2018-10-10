@@ -15,18 +15,21 @@ import pantallas.tableModels.CarrerasFinalizadasTableModel;
  * @author dstarsln
  */
 public class DialogoCarreras extends javax.swing.JDialog {
-    
+
     LogicaAplicacion la;
     Carrera carrera;
-    
+
     public DialogoCarreras(java.awt.Frame parent, boolean modal, LogicaAplicacion la) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         this.la = la;
+        jButtonModificar.setEnabled(false);
+        jButtonPasar.setEnabled(false);
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
         jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
+
     }
 
     /**
@@ -42,9 +45,12 @@ public class DialogoCarreras extends javax.swing.JDialog {
         jTableCarrerasNuevas = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCarrerasFinalizadas = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonAlta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonPasar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,10 +85,10 @@ public class DialogoCarreras extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(jTableCarrerasFinalizadas);
 
-        jButton1.setText("Crear una nueva carrera");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAlta.setText("Crear una nueva carrera");
+        jButtonAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAltaActionPerformed(evt);
             }
         });
 
@@ -91,10 +97,23 @@ public class DialogoCarreras extends javax.swing.JDialog {
         jLabel1.setText("Carreras");
         jLabel1.setToolTipText("");
 
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("En curso");
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Finalizadas");
+
+        jButtonPasar.setText(">>>>>");
+        jButtonPasar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPasarActionPerformed(evt);
             }
         });
 
@@ -102,83 +121,119 @@ public class DialogoCarreras extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(344, 344, 344))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonPasar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE))
                 .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(121, 121, 121))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(jButtonPasar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                    .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
         // TODO add your handling code here:
         DialogoAltaCarrera jDialogAlta = new DialogoAltaCarrera(this, true, la);
         jDialogAlta.setVisible(true);
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+        jButtonModificar.setEnabled(false);
+        jButtonPasar.setEnabled(false);
+
+    }//GEN-LAST:event_jButtonAltaActionPerformed
 
     private void jTableCarrerasNuevasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarrerasNuevasMouseClicked
         // TODO add your handling code here:
+
         if (evt.getClickCount() == 2) {
             int index = jTableCarrerasNuevas.getSelectedRow();
-            
+
             DialogoCarreraEnCurso jDialogCarreraCurso = new DialogoCarreraEnCurso(this, true, la, la.getListaDeCarreras().get(index));
             jDialogCarreraCurso.setVisible(true);
 
             //Una vez que acabe
             jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
             jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
+            jButtonModificar.setEnabled(false);
+            jButtonPasar.setEnabled(false);
+        } else if (evt.getClickCount() == 1) {
+            jButtonModificar.setEnabled(true);
+            jButtonPasar.setEnabled(true);
         }
 
     }//GEN-LAST:event_jTableCarrerasNuevasMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
 
         int index = jTableCarrerasNuevas.getSelectedRow();
         carrera = la.getListaDeCarreras().get(index);
         DialogoAltaCarrera jDialogAlta = new DialogoAltaCarrera(this, true, la, carrera);
         jDialogAlta.setVisible(true);
+        jButtonModificar.setEnabled(false);
+        jButtonPasar.setEnabled(false);
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
         jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonPasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPasarActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jButtonPasarActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonAlta;
+    private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonPasar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableCarrerasFinalizadas;

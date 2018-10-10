@@ -7,6 +7,8 @@ package pantallas;
 
 import beans.Carrera;
 import beans.Corredor;
+import beans.CorredoresYDorsal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
@@ -18,17 +20,17 @@ import pantallas.tableModels.CorredoresCarrerasTableModel;
  * @author dstarsln
  */
 public class DialogoCarreraEnCurso extends javax.swing.JDialog {
-
-    /**
-     * Creates new form DialogoCarreraEnCurso
-     *
-     * @param parent
-     * @param modal
-     * @param carrera
-     */
+    
     LogicaAplicacion la;
     Carrera carrera;
 
+    /**
+     * Constructor
+     * @param parent
+     * @param modal
+     * @param la
+     * @param carrera 
+     */
     public DialogoCarreraEnCurso(java.awt.Dialog parent, boolean modal, LogicaAplicacion la, Carrera carrera) {
         super(parent, modal);
         initComponents();
@@ -42,7 +44,7 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
         }
 
         jComboBoxlListaCorredores.setModel(dcm);
-        jTable1.setModel(new CorredoresCarrerasTableModel((HashMap<Corredor, Integer>) carrera.getListaCorredoresYDorsal()));
+        jTable1.setModel(new CorredoresCarrerasTableModel((ArrayList<CorredoresYDorsal>) carrera.getListaCorredoresYDorsal()));
     }
 
     /**
@@ -124,7 +126,10 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * OnClick nuevo corredor
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         DialogoAltaCorredor jDialogAltaCorredor = new DialogoAltaCorredor(this, true, la);
@@ -138,39 +143,15 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    /**
+     * OnClick anhadir corredor carrera
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int contador;
-        Corredor corredor;
+
         int index = jComboBoxlListaCorredores.getSelectedIndex();
-        corredor = la.getListaDeCorredores().get(index);
-        Corredor[] listaCorredoresEnCarrera = new Corredor[carrera.getListaCorredoresYDorsal().keySet().size()];
-        carrera.getListaCorredoresYDorsal().keySet().toArray(listaCorredoresEnCarrera);
-
-        
-        
-        if (carrera.getListaCorredoresYDorsal().keySet().contains(corredor)) {
-            System.err.println("Hola a todos");
-        } else {
-            contador = carrera.getListaCorredoresYDorsal().values().size() + 1;
-            la.altaCorredorDorsal(carrera, corredor, contador);
-        }
-        /*
-        for (Iterator iterator = carrera.getListaCorredoresYDorsal().keySet().iterator(); iterator.hasNext();) {
-            Corredor next = (Corredor) iterator.next();
-            
-            if (corredor.getDni().equals(next.getDni())) {
-                System.out.println("ta repe");
-            } else {
-                contador = carrera.getListaCorredoresYDorsal().values().size() + 1;
-                la.altaCorredorDorsal(carrera, corredor, contador);
-            }
-            
-        }*/
-
-        jTable1.setModel(new CorredoresCarrerasTableModel((HashMap<Corredor, Integer>) carrera.getListaCorredoresYDorsal()));
-
+        la.recogerDatosDarAltaCorredorDorsal(index, carrera);
+        jTable1.setModel(new CorredoresCarrerasTableModel((ArrayList<CorredoresYDorsal>) carrera.getListaCorredoresYDorsal()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -1,4 +1,3 @@
-
 package beans;
 
 import java.util.ArrayList;
@@ -12,11 +11,11 @@ import java.util.Map;
  * @author dstarsln
  */
 public class Carrera {
-    
-    private String nombreCarrera,lugarCarrera;
+
+    private String nombreCarrera, lugarCarrera;
     private Date fechaCarrera;
     private int numMaxCorredores;
-    private HashMap<Corredor,Integer> listaCorredoresYDorsal;
+    private List<CorredoresYDorsal> listaCorredoresYDorsal;
     private List<String> listaCorredoresSegunLlegada;
 
     public Carrera(String nombreCarrera, String lugarCarrera, Date fechaCarrera, int numMaxCorredores) {
@@ -25,10 +24,8 @@ public class Carrera {
         this.fechaCarrera = fechaCarrera;
         this.numMaxCorredores = numMaxCorredores;
         listaCorredoresSegunLlegada = new ArrayList<>();
-        listaCorredoresYDorsal = new HashMap<>();
+        listaCorredoresYDorsal = new ArrayList<>();
     }
-    
-    
 
     public String getNombreCarrera() {
         return nombreCarrera;
@@ -62,19 +59,25 @@ public class Carrera {
         this.numMaxCorredores = numMaxCorredores;
     }
 
-    public HashMap<Corredor, Integer> getListaCorredoresYDorsal() {
+    public List<CorredoresYDorsal> getListaCorredoresYDorsal() {
         return listaCorredoresYDorsal;
     }
 
-    public void setListaCorredoresYDorsal(HashMap<Corredor, Integer> listaCorredoresYDorsal) {
+    public void setListaCorredoresYDorsal(List<CorredoresYDorsal> listaCorredoresYDorsal) {
         this.listaCorredoresYDorsal = listaCorredoresYDorsal;
+    }
+
+    public List<String> getListaCorredoresSegunLlegada() {
+        return listaCorredoresSegunLlegada;
+    }
+
+    public void setListaCorredoresSegunLlegada(List<String> listaCorredoresSegunLlegada) {
+        this.listaCorredoresSegunLlegada = listaCorredoresSegunLlegada;
     }
 
     @Override
     public String toString() {
-        return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", lugarCarrera=" + lugarCarrera + ", fechaCarrera=" + fechaCarrera + ", numMaxCorredores=" + numMaxCorredores + ", listaCorredoresYDorsal=" + listaCorredoresYDorsal + '}';
+        return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", lugarCarrera=" + lugarCarrera + ", fechaCarrera=" + fechaCarrera + ", numMaxCorredores=" + numMaxCorredores + ", listaCorredoresYDorsal=" + listaCorredoresYDorsal + ", listaCorredoresSegunLlegada=" + listaCorredoresSegunLlegada + '}';
     }
-    
-    
-    
+
 }

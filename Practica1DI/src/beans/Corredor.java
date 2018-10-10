@@ -7,14 +7,15 @@ package beans;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
  * @author dstarsln
  */
-public class Corredor implements Comparable<Corredor>{
-    
-    private String nombre,dni,direccion,tlfn;
+public class Corredor implements Comparable<Corredor> {
+
+    private String nombre, dni, direccion, tlfn;
     private Date fechaNac;
 
     public Corredor(String nombre, String dni, String direccion, String tlfn, Date fechaNac) {
@@ -24,9 +25,6 @@ public class Corredor implements Comparable<Corredor>{
         this.tlfn = tlfn;
         this.fechaNac = fechaNac;
     }
-    
-
-    
 
     public String getNombre() {
         return nombre;
@@ -75,15 +73,29 @@ public class Corredor implements Comparable<Corredor>{
 
     @Override
     public int compareTo(Corredor t) {
-        if(this.dni.equals(t.getDni())){
+        if (this.dni.equals(t.getDni())) {
             return 0;
-        }
-        else{
+        } else {
             return 1;
         }
-        
     }
-   
 
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Corredor other = (Corredor) obj;
+        if (!Objects.equals(this.dni, other.dni)) {
+            return false;
+        }
+        return true;
+    }
+
 }
