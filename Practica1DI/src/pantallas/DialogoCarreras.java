@@ -110,7 +110,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Finalizadas");
 
-        jButtonPasar.setText(">>>>>");
+        jButtonPasar.setText("-------->");
         jButtonPasar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPasarActionPerformed(evt);
@@ -219,7 +219,12 @@ public class DialogoCarreras extends javax.swing.JDialog {
 
     private void jButtonPasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPasarActionPerformed
         // TODO add your handling code here:
-
+        int index = jTableCarrerasNuevas.getSelectedRow();
+        carrera = la.getListaDeCarreras().get(index);
+        la.darBajaCarrera(carrera.getNombreCarrera());
+        la.darAltaCarreraFinalizada(carrera);
+        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
+        jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
 
     }//GEN-LAST:event_jButtonPasarActionPerformed
 

@@ -94,7 +94,7 @@ public class LogicaAplicacion {
             Carrera carrera = (Carrera) iterator.next();
             if (carrera.getNombreCarrera().equals(nombre)) {
                 listaDeCarreras.remove(carrera);
-            }
+            }b
 
         }
 
@@ -110,6 +110,9 @@ public class LogicaAplicacion {
 
             }
         }
+    }
+    public void darAltaCarreraFinalizada(Carrera carrera){
+        listaCarrerasFinalizadas.add(carrera);
     }
 
     public void finalizarCarrera(Carrera carrera) {

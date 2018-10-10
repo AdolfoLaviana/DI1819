@@ -9,8 +9,6 @@ import beans.Carrera;
 import beans.Corredor;
 import beans.CorredoresYDorsal;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import logic.LogicaAplicacion;
