@@ -6,7 +6,6 @@
 package pantallas;
 
 import beans.Corredor;
-import java.util.regex.Pattern;
 import logic.LogicaAplicacion;
 import pantallas.tableModels.CorredoresTableModel;
 
