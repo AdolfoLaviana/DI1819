@@ -157,7 +157,7 @@ public class DialogoCorredores extends javax.swing.JDialog {
     private void jTableCorredoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCorredoresMouseClicked
         // TODO add your handling code here:
         int index = jTableCorredores.getSelectedRow();
-        jButtonModificar.setVisible(true);
+//        jButtonModificar.setVisible(true);
         jButtonBorrar.setVisible(true);
         c = la.getListaDeCorredores().get(index);
         

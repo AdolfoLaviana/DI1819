@@ -87,13 +87,20 @@ public class LogicaAplicacion {
     }
 
     public void darBajaCarrera(String nombre) {
+/*
+        for(Iterator<Carrera> iterator = listaDeCarreras.iterator();iterator.hasNext();){
+            Carrera next = iterator.next();
+            if(next.getNombreCarrera().equals(nombre));
+            listaDeCarreras.remove(next);
+        }
+   */     
 
-        Iterator iterator = listaDeCarreras.iterator();
+        Iterator<Carrera>  iterator = listaDeCarreras.iterator();
 
         while (iterator.hasNext()) {
             Carrera carrera = (Carrera) iterator.next();
             if (carrera.getNombreCarrera().equals(nombre)) {
-                listaDeCarreras.remove(carrera);
+                iterator.remove();
             }
 
         }

@@ -5,6 +5,7 @@
  */
 package pantallas;
 
+import java.util.Locale;
 import logic.LogicaAplicacion;
 import utils.TokenizarUtils;
 
@@ -136,10 +137,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PantallaPrincipal().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            Locale.setDefault(new Locale("es", "ES"));
+            new PantallaPrincipal().setVisible(true);
         });
     }
 

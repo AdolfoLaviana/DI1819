@@ -83,6 +83,11 @@ public class DialogoCarreras extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableCarrerasFinalizadas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCarrerasFinalizadasMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableCarrerasFinalizadas);
 
         jButtonAlta.setText("Crear una nueva carrera");
@@ -221,12 +226,22 @@ public class DialogoCarreras extends javax.swing.JDialog {
         // TODO add your handling code here:
         int index = jTableCarrerasNuevas.getSelectedRow();
         carrera = la.getListaDeCarreras().get(index);
-        la.darBajaCarrera(carrera.getNombreCarrera());
         la.darAltaCarreraFinalizada(carrera);
-        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
+        la.darBajaCarrera(carrera.getNombreCarrera());
+        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
+        jButtonModificar.setEnabled(false);
+        jButtonPasar.setEnabled(false);
 
     }//GEN-LAST:event_jButtonPasarActionPerformed
+
+    private void jTableCarrerasFinalizadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarrerasFinalizadasMouseClicked
+        // TODO add your handling code here:
+        
+        if(evt.getClickCount()==2){
+            
+        }
+    }//GEN-LAST:event_jTableCarrerasFinalizadasMouseClicked
 
     /**
      * @param args the command line arguments
