@@ -6,6 +6,7 @@
 package pantallas;
 
 import beans.Carrera;
+import java.util.ArrayList;
 import logic.LogicaAplicacion;
 import pantallas.tableModels.CarrerasEnCursoTableModel;
 import pantallas.tableModels.CarrerasFinalizadasTableModel;
@@ -28,7 +29,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
         jButtonModificar.setEnabled(false);
         jButtonPasar.setEnabled(false);
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
-        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
+        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel((ArrayList<Carrera>) la.getListaCarrerasFinalizadas()));
 
     }
 
@@ -199,7 +200,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
 
             //Una vez que acabe
             jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
-            jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
+            jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel((ArrayList<Carrera>) la.getListaCarrerasFinalizadas()));
             jButtonModificar.setEnabled(false);
             jButtonPasar.setEnabled(false);
         } else if (evt.getClickCount() == 1) {
@@ -219,7 +220,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
         jButtonModificar.setEnabled(false);
         jButtonPasar.setEnabled(false);
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
-        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
+        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel((ArrayList<Carrera>) la.getListaCarrerasFinalizadas()));
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonPasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPasarActionPerformed
@@ -229,7 +230,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
         la.darAltaCarreraFinalizada(carrera);
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
         la.darBajaCarrera(carrera.getNombreCarrera());
-        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel(la.getListaCarrerasFinalizadas()));
+        jTableCarrerasFinalizadas.setModel(new CarrerasFinalizadasTableModel((ArrayList<Carrera>) la.getListaCarrerasFinalizadas()));
         jButtonModificar.setEnabled(false);
         jButtonPasar.setEnabled(false);
 
@@ -237,9 +238,9 @@ public class DialogoCarreras extends javax.swing.JDialog {
 
     private void jTableCarrerasFinalizadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarrerasFinalizadasMouseClicked
         // TODO add your handling code here:
-        
-        if(evt.getClickCount()==2){
-            
+
+        if (evt.getClickCount() == 2) {
+
         }
     }//GEN-LAST:event_jTableCarrerasFinalizadasMouseClicked
 

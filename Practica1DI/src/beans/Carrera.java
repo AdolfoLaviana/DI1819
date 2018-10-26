@@ -16,15 +16,15 @@ public class Carrera {
     private Date fechaCarrera;
     private int numMaxCorredores;
     private List<CorredoresYDorsal> listaCorredoresYDorsal;
-    private List<String> listaCorredoresSegunLlegada;
+    private List<CorredoresTiempos> listaTiempos;
 
     public Carrera(String nombreCarrera, String lugarCarrera, Date fechaCarrera, int numMaxCorredores) {
         this.nombreCarrera = nombreCarrera;
         this.lugarCarrera = lugarCarrera;
         this.fechaCarrera = fechaCarrera;
         this.numMaxCorredores = numMaxCorredores;
-        listaCorredoresSegunLlegada = new ArrayList<>();
         listaCorredoresYDorsal = new ArrayList<>();
+        listaTiempos = new ArrayList<>();
     }
 
     public String getNombreCarrera() {
@@ -67,17 +67,19 @@ public class Carrera {
         this.listaCorredoresYDorsal = listaCorredoresYDorsal;
     }
 
-    public List<String> getListaCorredoresSegunLlegada() {
-        return listaCorredoresSegunLlegada;
+    public List<CorredoresTiempos> getListaTiempos() {
+        return listaTiempos;
     }
 
-    public void setListaCorredoresSegunLlegada(List<String> listaCorredoresSegunLlegada) {
-        this.listaCorredoresSegunLlegada = listaCorredoresSegunLlegada;
+    public void setListaTiempos(List<CorredoresTiempos> listaTiempos) {
+        this.listaTiempos = listaTiempos;
     }
 
     @Override
     public String toString() {
-        return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", lugarCarrera=" + lugarCarrera + ", fechaCarrera=" + fechaCarrera + ", numMaxCorredores=" + numMaxCorredores + ", listaCorredoresYDorsal=" + listaCorredoresYDorsal + ", listaCorredoresSegunLlegada=" + listaCorredoresSegunLlegada + '}';
+        return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", lugarCarrera=" + lugarCarrera + ", fechaCarrera=" + fechaCarrera + ", numMaxCorredores=" + numMaxCorredores + ", listaCorredoresYDorsal=" + listaCorredoresYDorsal + ", listaTiempos=" + listaTiempos + '}';
     }
+
+   
 
 }

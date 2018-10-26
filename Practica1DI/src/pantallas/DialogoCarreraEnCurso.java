@@ -153,21 +153,27 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
      */
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
         int index = jComboBoxlListaCorredores.getSelectedIndex();
+
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "No hay mas corredores Disponibles", "Validacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
+
             
-            listaCorredoresCombobox.remove(index);
             DefaultComboBoxModel dcm = new DefaultComboBoxModel();
             for (Corredor corredor : listaCorredoresCombobox) {
                 dcm.addElement(corredor.getDni());
             }
 
             jComboBoxlListaCorredores.setModel(dcm);
-            la.recogerDatosDarAltaCorredorDorsal(index, carrera);
-
-            jTable1.setModel(new CorredoresCarrerasTableModel((ArrayList<CorredoresYDorsal>) carrera.getListaCorredoresYDorsal()));
+            if (la.recogerDatosDarAltaCorredorDorsal(index, carrera)) {
+                listaCorredoresCombobox.remove(index);
+                jTable1.setModel(new CorredoresCarrerasTableModel((ArrayList<CorredoresYDorsal>) carrera.getListaCorredoresYDorsal()));
+            } else {
+                JOptionPane.showMessageDialog(this, "NumeroMaximoDeCorredoresAlcanzados", "Validacion", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
+
+
     }//GEN-LAST:event_jButtonAltaActionPerformed
 
 

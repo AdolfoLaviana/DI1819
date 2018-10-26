@@ -14,6 +14,7 @@ public class LogicaAplicacion {
     private List<Carrera> listaCarrerasFinalizadas;
     private List<CorredoresYDorsal> listaCorredoresDorsal;
     private CorredoresYDorsal corredorYdorsal;
+    
 
     public LogicaAplicacion() {
         listaDeCorredores = new ArrayList<>();
@@ -87,15 +88,15 @@ public class LogicaAplicacion {
     }
 
     public void darBajaCarrera(String nombre) {
-/*
+        /*
         for(Iterator<Carrera> iterator = listaDeCarreras.iterator();iterator.hasNext();){
             Carrera next = iterator.next();
             if(next.getNombreCarrera().equals(nombre));
             listaDeCarreras.remove(next);
         }
-   */     
+         */
 
-        Iterator<Carrera>  iterator = listaDeCarreras.iterator();
+        Iterator<Carrera> iterator = listaDeCarreras.iterator();
 
         while (iterator.hasNext()) {
             Carrera carrera = (Carrera) iterator.next();
@@ -118,7 +119,8 @@ public class LogicaAplicacion {
             }
         }
     }
-    public void darAltaCarreraFinalizada(Carrera carrera){
+
+    public void darAltaCarreraFinalizada(Carrera carrera) {
         listaCarrerasFinalizadas.add(carrera);
     }
 
@@ -145,11 +147,16 @@ public class LogicaAplicacion {
      * @param index
      * @param carrera
      */
-    public void recogerDatosDarAltaCorredorDorsal(int index, Carrera carrera) {
-        int contador;
-        Corredor c = this.getListaDeCorredores().get(index);
+    public boolean recogerDatosDarAltaCorredorDorsal(int index, Carrera carrera) {
 
-        contador = carrera.getListaCorredoresYDorsal().size() + 1;
-        this.altaCorredorDorsal(carrera, c, contador);
+        if (carrera.getNumMaxCorredores() > carrera.getListaCorredoresYDorsal().size()) {
+            int contador;
+            Corredor c = this.getListaDeCorredores().get(index);
+
+            contador = carrera.getListaCorredoresYDorsal().size() + 1;
+            this.altaCorredorDorsal(carrera, c, contador);
+            return true;
+        }
+        return false;
     }
 }

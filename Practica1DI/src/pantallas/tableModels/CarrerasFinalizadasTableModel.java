@@ -7,7 +7,6 @@ package pantallas.tableModels;
 
 import beans.Carrera;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -16,11 +15,11 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CarrerasFinalizadasTableModel extends AbstractTableModel {
 
-    private List<Carrera> listaCarreras = new ArrayList<>();
-    private String[] columnas = {"Nombre", "Lugar","Fecha Inicio" ,"Maximo corredores"};
+    private ArrayList<Carrera> listaCarrerasFinalizadas;
+    private String[] columnas = {"Nombre", "Lugar","Fecha"};
 
-    public CarrerasFinalizadasTableModel(List<Carrera> listaCarreras) {
-        this.listaCarreras = listaCarreras;
+    public CarrerasFinalizadasTableModel(ArrayList<Carrera>listaCarrerasFinalizadas) {
+        this.listaCarrerasFinalizadas = listaCarrerasFinalizadas;
     }
 
     @Override
@@ -30,7 +29,7 @@ public class CarrerasFinalizadasTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return listaCarreras.size();
+        return listaCarrerasFinalizadas.size();
     }
 
     @Override
@@ -42,13 +41,12 @@ public class CarrerasFinalizadasTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return listaCarreras.get(rowIndex).getNombreCarrera();
+                return listaCarrerasFinalizadas.get(rowIndex).getNombreCarrera();
             case 1:
-                return listaCarreras.get(rowIndex).getLugarCarrera();
+                return listaCarrerasFinalizadas.get(rowIndex).getLugarCarrera();
             case 2:
-                return utils.FechaUtils.pasarDateAString(listaCarreras.get(rowIndex).getFechaCarrera());
-            case 3:
-                return listaCarreras.get(rowIndex).getNumMaxCorredores();
+                return utils.FechaUtils.pasarDateAString(listaCarrerasFinalizadas.get(rowIndex).getFechaCarrera());
+
         }
         return null;
     }
