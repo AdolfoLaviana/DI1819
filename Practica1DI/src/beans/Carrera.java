@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.Map;
  *
  * @author dstarsln
  */
-public class Carrera {
+public class Carrera implements Serializable{
 
     private String nombreCarrera, lugarCarrera;
     private Date fechaCarrera;

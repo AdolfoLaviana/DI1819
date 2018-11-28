@@ -22,16 +22,15 @@ public class DialogoAltaCorredor extends javax.swing.JDialog {
     /**
      * Creates new form DialogoAltaCorredor
      */
-    LogicaAplicacion la;
+    LogicaAplicacion la = LogicaAplicacion.getInstance();
     Corredor corredor;
     String nombre;
 
-    public DialogoAltaCorredor(java.awt.Dialog parent, boolean modal, LogicaAplicacion la) {
+    public DialogoAltaCorredor(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        this.la = la;
         jButtonAlta.setEnabled(false);
         
         ValidationGroup group = validationPanel1.getValidationGroup();
@@ -63,6 +62,7 @@ public class DialogoAltaCorredor extends javax.swing.JDialog {
         jTextFieldNombre.setText(corredor.getNombre());
         jTextFieldDireccion.setText(corredor.getDireccion());
         jTextFieldDni.setText(corredor.getDni());
+        jTextFieldDni.setEditable(false);
         jTextFieldTelefono.setText(corredor.getTlfn());
         String fechaString = utils.FechaUtils.pasarDateAString(corredor.getFechaNac());
         String[] trozos = fechaString.split("/");
@@ -247,7 +247,7 @@ public class DialogoAltaCorredor extends javax.swing.JDialog {
             String fechaString = jSpinnerFechDay.getValue() + "/" + jSpinnerMonth.getValue() + "/" + jSpinnerYear.getValue();
             Date fechaNac = utils.FechaUtils.pasarStringADate(fechaString);
             Corredor corredorModificar = new Corredor(nombre, dni, direccion, telefono, fechaNac);
-            la.modificarCorredor(nombre, corredorModificar);
+            la.modificarCorredor(dni, corredorModificar);
         }
         //Limpiar Campos
         jTextFieldNombre.setText("");

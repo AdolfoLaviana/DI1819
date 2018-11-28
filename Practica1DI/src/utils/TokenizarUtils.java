@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
+import logic.LogicaAplicacion;
 
 
 public class TokenizarUtils {
@@ -35,7 +36,7 @@ public class TokenizarUtils {
     
     
     public TokenizarUtils(logic.LogicaAplicacion la) {
-        this.la = la;
+        this.la = LogicaAplicacion.getInstance();
     }
 
     public void leerCSVcorredor() {

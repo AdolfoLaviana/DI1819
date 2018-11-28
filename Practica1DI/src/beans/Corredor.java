@@ -5,15 +5,15 @@
  */
 package beans;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author dstarsln
  */
-public class Corredor implements Comparable<Corredor> {
+public class Corredor implements Comparable<Corredor>, Serializable {
 
     private String nombre, dni, direccion, tlfn;
     private Date fechaNac;

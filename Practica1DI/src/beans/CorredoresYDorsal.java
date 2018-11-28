@@ -5,13 +5,14 @@
  */
 package beans;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author dstarsln
  */
-public class CorredoresYDorsal {
+public class CorredoresYDorsal implements Serializable{
     private Corredor corredor;
     private int dorsal;
 

@@ -5,7 +5,11 @@
  */
 package pantallas;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.Locale;
+import logic.GestionGuardado;
 import logic.LogicaAplicacion;
 import utils.TokenizarUtils;
 
@@ -19,18 +23,32 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      * Creates new form PantallaPrincipal
      */
     //variables
-    LogicaAplicacion la;
+    LogicaAplicacion la = LogicaAplicacion.getInstance();
     utils.TokenizarUtils csv;
-    
-    
+
     public PantallaPrincipal() {
+
         initComponents();
-        la = new LogicaAplicacion();
         csv = new TokenizarUtils(la);
-        csv.leerCSVcorredor();
+        
+        File archivo = new File("LogicaAplicacion.dat");
+        System.out.println("archivo "+archivo);
+        
+        if (!archivo.exists())
+            csv.leerCSVcorredor();
+       
+
         setLocationRelativeTo(null);
         setResizable(false);
-        
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                super.windowClosing(we); //To change body of generated methods, choose Tools | Templates.
+                GestionGuardado.salvarCambios();
+            }
+        });
+
     }
 
     /**
@@ -45,6 +63,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonCorredores = new javax.swing.JButton();
         jButtonCarreras = new javax.swing.JButton();
+        jButtonConfiguracion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +83,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButtonConfiguracion.setText("CONFIGURACION");
+        jButtonConfiguracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfiguracionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,8 +101,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jButtonConfiguracion)))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -88,7 +119,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCarreras)
                     .addComponent(jButtonCorredores))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jButtonConfiguracion)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -96,18 +129,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jButtonCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCorredoresActionPerformed
         // TODO add your handling code here:
-        DialogoCorredores jDialogCorredores = new DialogoCorredores(this, true, la);
+        DialogoCorredores jDialogCorredores = new DialogoCorredores(this, true);
         jDialogCorredores.setVisible(true);
-       
-        
-        
+
+
     }//GEN-LAST:event_jButtonCorredoresActionPerformed
 
     private void jButtonCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarrerasActionPerformed
         // TODO add your handling code here:
-        DialogoCarreras jDialogCarreras = new DialogoCarreras(this, true, la);
+        DialogoCarreras jDialogCarreras = new DialogoCarreras(this, true);
         jDialogCarreras.setVisible(true);
     }//GEN-LAST:event_jButtonCarrerasActionPerformed
+
+    private void jButtonConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracionActionPerformed
+        // TODO add your handling code here:
+        JDialogConfiguracion jDialogConfiguracion = new JDialogConfiguracion(this, true);
+        jDialogConfiguracion.setVisible(true);
+    }//GEN-LAST:event_jButtonConfiguracionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,11 +178,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             Locale.setDefault(new Locale("es", "ES"));
             new PantallaPrincipal().setVisible(true);
+
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCarreras;
+    private javax.swing.JButton jButtonConfiguracion;
     private javax.swing.JButton jButtonCorredores;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

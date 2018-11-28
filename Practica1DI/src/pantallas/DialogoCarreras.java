@@ -17,15 +17,14 @@ import pantallas.tableModels.CarrerasFinalizadasTableModel;
  */
 public class DialogoCarreras extends javax.swing.JDialog {
 
-    LogicaAplicacion la;
+    LogicaAplicacion la = LogicaAplicacion.getInstance();
     Carrera carrera;
 
-    public DialogoCarreras(java.awt.Frame parent, boolean modal, LogicaAplicacion la) {
+    public DialogoCarreras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        this.la = la;
         jButtonModificar.setEnabled(false);
         jButtonPasar.setEnabled(false);
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
@@ -180,7 +179,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
         // TODO add your handling code here:
-        DialogoAltaCarrera jDialogAlta = new DialogoAltaCarrera(this, true, la);
+        DialogoAltaCarrera jDialogAlta = new DialogoAltaCarrera(this, true);
         jDialogAlta.setVisible(true);
         jTableCarrerasNuevas.setModel(new CarrerasEnCursoTableModel(la.getListaDeCarreras()));
 
@@ -195,7 +194,7 @@ public class DialogoCarreras extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {
             int index = jTableCarrerasNuevas.getSelectedRow();
 
-            DialogoCarreraEnCurso jDialogCarreraCurso = new DialogoCarreraEnCurso(this, true, la, la.getListaDeCarreras().get(index));
+            DialogoCarreraEnCurso jDialogCarreraCurso = new DialogoCarreraEnCurso(this, true, la.getListaDeCarreras().get(index));
             jDialogCarreraCurso.setVisible(true);
 
             //Una vez que acabe

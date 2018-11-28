@@ -3,24 +3,38 @@ package logic;
 import beans.Carrera;
 import beans.Corredor;
 import beans.CorredoresYDorsal;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
-public class LogicaAplicacion {
+public class LogicaAplicacion implements Serializable {
 
     private List<Corredor> listaDeCorredores;
     private List<Carrera> listaDeCarreras;
     private List<Carrera> listaCarrerasFinalizadas;
     private List<CorredoresYDorsal> listaCorredoresDorsal;
     private CorredoresYDorsal corredorYdorsal;
-    
+    private static LogicaAplicacion INSTANCIA = GestionGuardado.cargarInstancia();
+    private transient Timer timer;
 
-    public LogicaAplicacion() {
+    LogicaAplicacion() {
         listaDeCorredores = new ArrayList<>();
         listaDeCarreras = new ArrayList<>();
         listaCarrerasFinalizadas = new ArrayList<>();
         listaCorredoresDorsal = new ArrayList<>();
+    }
+
+    public static LogicaAplicacion getInstance() {
+
+        if (INSTANCIA != null) {
+            return INSTANCIA;
+        }
+        LogicaAplicacion la = new LogicaAplicacion();
+        return la;
     }
 
     public List<Corredor> getListaDeCorredores() {
@@ -70,13 +84,13 @@ public class LogicaAplicacion {
         }
     }
 
-    public void modificarCorredor(String nombre, Corredor corredor) {
+    public void modificarCorredor(String dni, Corredor corredor) {
 
         for (int i = 0; i < listaDeCorredores.size(); i++) {
-            if (listaDeCorredores.get(i).getNombre().equals(nombre)) {
+            if (listaDeCorredores.get(i).getDni().equals(dni)) {
                 listaDeCorredores.get(i).setNombre(corredor.getNombre());
                 listaDeCorredores.get(i).setDni(corredor.getDni());
-                listaDeCorredores.get(i).setDni(corredor.getDni());
+                listaDeCorredores.get(i).setDireccion(corredor.getDireccion());
                 listaDeCorredores.get(i).setFechaNac(corredor.getFechaNac());
                 listaDeCorredores.get(i).setTlfn(corredor.getTlfn());
             }
@@ -159,4 +173,31 @@ public class LogicaAplicacion {
         }
         return false;
     }
+
+    public void iniciarGuardadoAutomatico(long tiempoActualizacionAutomatica) {
+
+        if (timer == null) {
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    GestionGuardado.salvarCambios();
+                    
+                }
+            }, tiempoActualizacionAutomatica);
+            
+        } else if (timer != null) {
+            timer.cancel();
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    GestionGuardado.salvarCambios();
+                }
+            }, tiempoActualizacionAutomatica);
+
+        }
+
+    }
+
 }

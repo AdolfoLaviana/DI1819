@@ -13,15 +13,14 @@ public class DialogoAltaCarrera extends javax.swing.JDialog {
     /**
      * Creates new form DialogoAltaCarrera
      */
-    LogicaAplicacion la;
+    LogicaAplicacion la = LogicaAplicacion.getInstance();
     Carrera carrera;
     String nombre;
 
-    public DialogoAltaCarrera(java.awt.Dialog parent, boolean modal, LogicaAplicacion la) {
+    public DialogoAltaCarrera(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.la = la;
     }
 
     public DialogoAltaCarrera(java.awt.Dialog parent, boolean modal, LogicaAplicacion la, Carrera carrera) {

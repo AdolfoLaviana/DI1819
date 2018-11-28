@@ -9,6 +9,7 @@ import beans.Carrera;
 import beans.Corredor;
 import beans.CorredoresYDorsal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import logic.LogicaAplicacion;
@@ -20,7 +21,7 @@ import pantallas.tableModels.CorredoresCarrerasTableModel;
  */
 public class DialogoCarreraEnCurso extends javax.swing.JDialog {
 
-    LogicaAplicacion la;
+    LogicaAplicacion la = LogicaAplicacion.getInstance();
     Carrera carrera;
     ArrayList<Corredor> listaCorredoresCombobox;
 
@@ -32,10 +33,9 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
      * @param la
      * @param carrera
      */
-    public DialogoCarreraEnCurso(java.awt.Dialog parent, boolean modal, LogicaAplicacion la, Carrera carrera) {
+    public DialogoCarreraEnCurso(java.awt.Dialog parent, boolean modal, Carrera carrera) {
         super(parent, modal);
         initComponents();
-        this.la = la;
         this.carrera = carrera;
         this.listaCorredoresCombobox = new ArrayList<>(la.getListaDeCorredores());
         setResizable(false);
@@ -63,6 +63,7 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
         jComboBoxlListaCorredores = new javax.swing.JComboBox<>();
         jButtonAlta = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,6 +96,13 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("borrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +114,8 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxlListaCorredores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
@@ -119,9 +128,11 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jComboBoxlListaCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
@@ -135,7 +146,7 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
      */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        DialogoAltaCorredor jDialogAltaCorredor = new DialogoAltaCorredor(this, true, la);
+        DialogoAltaCorredor jDialogAltaCorredor = new DialogoAltaCorredor(this, true);
         jDialogAltaCorredor.setVisible(true);
         DefaultComboBoxModel dcm = new DefaultComboBoxModel();
         for (Corredor corredor : listaCorredoresCombobox) {
@@ -176,8 +187,15 @@ public class DialogoCarreraEnCurso extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonAltaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        System.out.println(index);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAlta;
     private javax.swing.JComboBox<String> jComboBoxlListaCorredores;
